@@ -218,20 +218,25 @@ def main():
     text_label = feedback.generateTextLabel(detections)
 
     # ---- Bar Chart for Detection Confidence
-    # Extract Confidence Data for Bar Chart
-    class_names = [item['class_name'] for item in detections]
-    confidence = [item['confidence'] for item in detections]
+    try:
+        # Extract Confidence Data for Bar Chart
+        class_names = [item['class_name'] for item in detections]
+        confidence = [item['confidence'] for item in detections]
 
-    # Create a bar chart to visualize the confidence of each detection class
-    fig, ax = plt.subplots(figsize=(8, 6))
-    ax.bar(class_names, confidence, color='skyblue')
-    ax.set_xlabel('Class Name')
-    ax.set_ylabel('Confidence')
-    ax.set_title('Detection Confidence by Class')
-    ax.set_xticklabels(class_names, rotation=45, ha='right')
+        # Create a bar chart to visualize the confidence of each detection class
+        fig, ax = plt.subplots(figsize=(8, 6))
+        ax.bar(class_names, confidence, color='skyblue')
+        ax.set_xlabel('Class Name')
+        ax.set_ylabel('Confidence')
+        ax.set_title('Detection Confidence by Class')
+        ax.set_xticklabels(class_names, rotation=45, ha='right')
 
-    # Show the bar chart in the Streamlit app
-    st.pyplot(fig)
+        # Show the bar chart in the Streamlit app
+        st.pyplot(fig)
+
+    except Exception as e:
+        st.error("Error generating bar chart.")
+        st.exception(e)
 
     # ---- Buttons (Filter/Audio) under the middle panel
     col1, col2, col3 = st.columns(3, gap="large")
