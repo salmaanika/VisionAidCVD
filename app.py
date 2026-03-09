@@ -46,7 +46,7 @@ def summarize_detections(detections: list[dict]) -> str:
     counts: dict[str, int] = {}
     for d in detections:
         counts[d["class_name"]] = counts.get(d["class_name"], 0) + 1
-    return "Detected " + ", ".join(f"{v} {k}" for k, v in counts.items()) + "."
+    return "Detected Color:" + ", ".join(f"{v} {k}" for k, v in counts.items()) + "."
 
 
 def make_tts_mp3(text: str) -> bytes | None:
