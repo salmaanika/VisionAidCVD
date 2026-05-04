@@ -14,7 +14,19 @@ import streamlit as st
 from PIL import Image
 from ultralytics import YOLO
 import time
+# Function to simulate a process that takes time (e.g., processing an image or live camera input)
+def process_data():
+    # Simulate a process that takes time (e.g., image processing)
+    time.sleep(2)  # Simulate delay for 2 seconds
+
+# Start tracking the response time
 start_time = time.time()
+
+# Simulate the data processing (e.g., using camera or uploaded image)
+process_data()
+
+# Calculate elapsed time
+elapsed_time = time.time() - start_time
 
 APP_TITLE = "VISION AID: Color Perception Enhancement System for Color Blind Users"
 MODEL_PATH = "best.pt"
@@ -267,7 +279,6 @@ class AudioFeedbackModule:
             return buf.getvalue()
         except Exception:
             return None
-
 
 # =============================
 # UserInterface (UML) - Streamlit Controller
@@ -542,9 +553,9 @@ def main():
             file_name=f"{base}_{suffix}_bundle.zip",
             mime="application/zip",
         )
-end_time = time.time()
-response_time = end_time - start_time
-st.write(f"Response Time: {response_time:.2f} seconds")
 
 if __name__ == "__main__":
     main()
+    
+# Display the response time below the input controls
+st.write(f"Response Time: {elapsed_time:.2f} seconds")
