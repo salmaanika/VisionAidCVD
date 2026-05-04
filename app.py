@@ -13,6 +13,8 @@ import numpy as np
 import streamlit as st
 from PIL import Image
 from ultralytics import YOLO
+import time
+start_time = time.time()
 
 APP_TITLE = "VISION AID: Color Perception Enhancement System for Color Blind Users"
 MODEL_PATH = "best.pt"
@@ -540,7 +542,9 @@ def main():
             file_name=f"{base}_{suffix}_bundle.zip",
             mime="application/zip",
         )
-
+end_time = time.time()
+response_time = end_time - start_time
+st.write(f"Response Time: {response_time:.2f} seconds")
 
 if __name__ == "__main__":
     main()
